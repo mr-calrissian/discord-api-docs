@@ -414,16 +414,16 @@ Used to trigger the initial handshake with the gateway.
 
 ###### Identify Structure
 
-| Field                | Type                                                       | Description                                                                                                                    | Default |
-| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| token                | string                                                     | authentication token                                                                                                           | -       |
-| properties           | object                                                     | [connection properties](#DOCS_TOPICS_GATEWAY/identify-identify-connection-properties)                                          | -       |
-| compress?            | boolean                                                    | whether this connection supports compression of packets                                                                        | false   |
-| large_threshold?     | integer                                                    | value between 50 and 250, total number of members where the gateway will stop sending offline members in the guild member list | 50      |
-| shard?               | array of two integers (shard_id, num_shards)               | used for [Guild Sharding](#DOCS_TOPICS_GATEWAY/sharding)                                                                       | -       |
-| presence?            | [update status](#DOCS_TOPICS_GATEWAY/update-status) object | presence structure for initial presence information                                                                            | -       |
-| guild_subscriptions? | boolean                                                    | enables dispatching of guild subscription events (presence and typing events)                                                  | true    |
-| intents?             | integer                                                    | the [Gateway Intents](#DOCS_TOPICS_GATEWAY/gateway-intents) you wish to receive                                                | -       |
+| Field                | Type                                                                                                  | Description                                                                                                                    | Default |
+| -------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| token                | string                                                                                                | authentication token                                                                                                           | -       |
+| properties           | [identify connection properties](#DOCS_TOPICS_GATEWAY/identify-identify-connection-properties) object | information about the client and how it's connecting                                                                           | -       |
+| compress?            | boolean                                                                                               | whether this connection supports compression of packets                                                                        | false   |
+| large_threshold?     | integer                                                                                               | value between 50 and 250, total number of members where the gateway will stop sending offline members in the guild member list | 50      |
+| shard?               | array of two integers (shard_id, num_shards)                                                          | used for [Guild Sharding](#DOCS_TOPICS_GATEWAY/sharding)                                                                       | -       |
+| presence?            | [gateway status update](#DOCS_TOPICS_GATEWAY/update-status) object                                    | presence structure for initial presence information                                                                            | -       |
+| guild_subscriptions? | boolean                                                                                               | enables dispatching of guild subscription events (presence and typing events)                                                  | true    |
+| intents?             | integer                                                                                               | the [Gateway Intents](#DOCS_TOPICS_GATEWAY/gateway-intents) you wish to receive                                                | -       |
 
 ###### Identify Connection Properties
 
@@ -581,13 +581,13 @@ Sent by the client to indicate a presence or status update.
 
 ###### Status Types
 
-| Status    | Description                    |
-| --------- | ------------------------------ |
-| online    | Online                         |
-| dnd       | Do Not Disturb                 |
-| idle      | AFK                            |
-| invisible | Invisible and shown as offline |
-| offline   | Offline                        |
+| Value (string) | Description                    |
+| -------------- | ------------------------------ |
+| online         | Online                         |
+| dnd            | Do Not Disturb                 |
+| idle           | AFK                            |
+| invisible      | Invisible and shown as offline |
+| offline        | Offline                        |
 
 ###### Example Gateway Status Update
 
@@ -871,7 +871,7 @@ Sent when a new invite to a channel is created.
 | ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | channel_id        | snowflake                                               | the channel the invite is for                                                                                      |
 | code              | string                                                  | the unique invite [code](#DOCS_RESOURCES_INVITE/invite-object)                                                     |
-| created_at        | timestamp                                               | the time at which the invite was created                                                                           |
+| created_at        | integer                                                 | unix timestamp of the time at which the invite was created                                                                           |
 | guild_id?         | snowflake                                               | the guild of the invite                                                                                            |
 | inviter?          | [user](#DOCS_RESOURCES_USER/user-object) object         | the user that created the invite                                                                                   |
 | max_age           | integer                                                 | how long the invite is valid for (in seconds)                                                                      |
@@ -943,7 +943,7 @@ Sent when a user adds a reaction to a message.
 | message_id | snowflake                                                    | the id of the message                                                                                           |
 | guild_id?  | snowflake                                                    | the id of the guild                                                                                             |
 | member?    | [member](#DOCS_RESOURCES_GUILD/guild-member-object) object   | the member who reacted if this happened in a guild                                                              |
-| emoji      | a partial [emoji](#DOCS_RESOURCES_EMOJI/emoji-object) object | the emoji used to react - [example](#DOCS_RESOURCES_EMOJI/emoji-object-gateway-reaction-standard-emoji-example) |
+| emoji      | partial [emoji](#DOCS_RESOURCES_EMOJI/emoji-object) object | the emoji used to react - [example](#DOCS_RESOURCES_EMOJI/emoji-object-gateway-reaction-standard-emoji-example) |
 
 #### Message Reaction Remove
 
@@ -957,7 +957,7 @@ Sent when a user removes a reaction from a message.
 | channel_id | snowflake                                                    | the id of the channel                                                                                           |
 | message_id | snowflake                                                    | the id of the message                                                                                           |
 | guild_id?  | snowflake                                                    | the id of the guild                                                                                             |
-| emoji      | a partial [emoji](#DOCS_RESOURCES_EMOJI/emoji-object) object | the emoji used to react - [example](#DOCS_RESOURCES_EMOJI/emoji-object-gateway-reaction-standard-emoji-example) |
+| emoji      | partial [emoji](#DOCS_RESOURCES_EMOJI/emoji-object) object | the emoji used to react - [example](#DOCS_RESOURCES_EMOJI/emoji-object-gateway-reaction-standard-emoji-example) |
 
 #### Message Reaction Remove All
 
@@ -982,7 +982,7 @@ Sent when a bot removes all instances of a given emoji from the reactions of a m
 | channel_id | snowflake                                                  | the id of the channel      |
 | guild_id?  | snowflake                                                  | the id of the guild        |
 | message_id | snowflake                                                  | the id of the message      |
-| emoji      | [partial emoji object](#DOCS_RESOURCES_EMOJI/emoji-object) | the emoji that was removed |
+| emoji      | partial [emoji](#DOCS_RESOURCES_EMOJI/emoji-object) object | the emoji that was removed |
 
 ### Presence
 
@@ -1024,34 +1024,34 @@ Active sessions are indicated with an "online", "idle", or "dnd" string per plat
 
 ###### Activity Structure
 
-| Field           | Type                                                                          | Description                                                                                                               |
-| --------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| name            | string                                                                        | the activity's name                                                                                                       |
-| type            | integer                                                                       | [activity type](#DOCS_TOPICS_GATEWAY/activity-object-activity-types)                                                      |
-| url?            | ?string                                                                       | stream url, is validated when type is 1                                                                                   |
-| created_at      | integer                                                                       | unix timestamp of when the activity was added to the user's session                                                       |
-| timestamps?     | [timestamps](#DOCS_TOPICS_GATEWAY/activity-object-activity-timestamps) object | unix timestamps for start and/or end of the game                                                                          |
-| application_id? | snowflake                                                                     | application id for the game                                                                                               |
-| details?        | ?string                                                                       | what the player is currently doing                                                                                        |
-| state?          | ?string                                                                       | the user's current party status                                                                                           |
-| emoji?          | ?[emoji](#DOCS_TOPICS_GATEWAY/activity-object-activity-emoji) object          | the emoji used for a custom status                                                                                        |
-| party?          | [party](#DOCS_TOPICS_GATEWAY/activity-object-activity-party) object           | information for the current party of the player                                                                           |
-| assets?         | [assets](#DOCS_TOPICS_GATEWAY/activity-object-activity-assets) object         | images for the presence and their hover texts                                                                             |
-| secrets?        | [secrets](#DOCS_TOPICS_GATEWAY/activity-object-activity-secrets) object       | secrets for Rich Presence joining and spectating                                                                          |
-| instance?       | boolean                                                                       | whether or not the activity is an instanced game session                                                                  |
-| flags?          | integer                                                                       | [activity flags](#DOCS_TOPICS_GATEWAY/activity-object-activity-flags) `OR`d together, describes what the payload includes |
+| Field           | Type                                                                                   | Description                                                                                                               |
+| --------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| name            | string                                                                                 | the activity's name                                                                                                       |
+| type            | integer                                                                                | [activity type](#DOCS_TOPICS_GATEWAY/activity-object-activity-types)                                                      |
+| url?            | ?string                                                                                | stream url, is validated when type is 1                                                                                   |
+| created_at      | integer                                                                                | unix timestamp of when the activity was added to the user's session                                                       |
+| timestamps?     | [activity timestamps](#DOCS_TOPICS_GATEWAY/activity-object-activity-timestamps) object | unix timestamps for start and/or end of the game                                                                          |
+| application_id? | snowflake                                                                              | application id for the game                                                                                               |
+| details?        | ?string                                                                                | what the player is currently doing                                                                                        |
+| state?          | ?string                                                                                | the user's current party status                                                                                           |
+| emoji?          | ?[activity emoji](#DOCS_TOPICS_GATEWAY/activity-object-activity-emoji) object          | the emoji used for a custom status                                                                                        |
+| party?          | [activity party](#DOCS_TOPICS_GATEWAY/activity-object-activity-party) object           | information for the current party of the player                                                                           |
+| assets?         | [activity assets](#DOCS_TOPICS_GATEWAY/activity-object-activity-assets) object         | images for the presence and their hover texts                                                                             |
+| secrets?        | [activity secrets](#DOCS_TOPICS_GATEWAY/activity-object-activity-secrets) object       | secrets for Rich Presence joining and spectating                                                                          |
+| instance?       | boolean                                                                                | whether or not the activity is an instanced game session                                                                  |
+| flags?          | integer                                                                                | [activity flags](#DOCS_TOPICS_GATEWAY/activity-object-activity-flags) `OR`d together, describes what the payload includes |
 
 > info
 > Bots are only able to send `name`, `type`, and optionally `url`.
 
 ###### Activity Types
 
-| ID  | Name      | Format              | Example                   |
-| --- | --------- | ------------------- | ------------------------- |
-| 0   | Game      | Playing {name}      | "Playing Rocket League"   |
-| 1   | Streaming | Streaming {details} | "Streaming Rocket League" |
-| 2   | Listening | Listening to {name} | "Listening to Spotify"    |
-| 4   | Custom    | {emoji} {name}      | ":smiley: I am cool"      |
+| Values (integer)  | Name      | Format              | Example                   |
+| ----------------- | --------- | ------------------- | ------------------------- |
+| 0                 | Game      | Playing {name}      | "Playing Rocket League"   |
+| 1                 | Streaming | Streaming {details} | "Streaming Rocket League" |
+| 2                 | Listening | Listening to {name} | "Listening to Spotify"    |
+| 4                 | Custom    | {emoji} {name}      | ":smiley: I am cool"      |
 
 > info
 > The streaming type currently only supports Twitch and YouTube. Only `https://twitch.tv/` and `https://youtube.com/` urls will work.
@@ -1097,14 +1097,14 @@ Active sessions are indicated with an "online", "idle", or "dnd" string per plat
 
 ###### Activity Flags
 
-| Name         | Value  |
-| ------------ | ------ |
-| INSTANCE     | 1 << 0 |
-| JOIN         | 1 << 1 |
-| SPECTATE     | 1 << 2 |
-| JOIN_REQUEST | 1 << 3 |
-| SYNC         | 1 << 4 |
-| PLAY         | 1 << 5 |
+| Value (bitfield) | Name         | 
+| ---------------- | ------------ |
+| 1 << 0           | INSTANCE     |
+| 1 << 1           | JOIN         |
+| 1 << 2           | SPECTATE     |
+| 1 << 3           | JOIN_REQUEST |
+| 1 << 4           | SYNC         |
+| 1 << 5           | PLAY         |
 
 ###### Example Activity
 

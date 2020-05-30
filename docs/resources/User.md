@@ -58,32 +58,32 @@ There are other rules and restrictions not shared here for the sake of spam and 
 
 ###### User Flags
 
-| Value   | Description            |
-| ------- | ------------------     |
-| 0       | None                   |
-| 1 << 0  | Discord Employee       |
-| 1 << 1  | Discord Partner        |
-| 1 << 2  | HypeSquad Events       |
-| 1 << 3  | Bug Hunter Level 1     |
-| 1 << 6  | House Bravery          |
-| 1 << 7  | House Brilliance       |
-| 1 << 8  | House Balance          |
-| 1 << 9  | Early Supporter        |
-| 1 << 10 | Team User              |
-| 1 << 12 | System                 |
-| 1 << 14 | Bug Hunter Level 2     |
-| 1 << 16 | Verified Bot           |
-| 1 << 17 | Verified Bot Developer |
+| Value (bitfield) | Description            |
+| ---------------- | ------------------     |
+| 0                | None                   |
+| 1 << 0           | Discord Employee       |
+| 1 << 1           | Discord Partner        |
+| 1 << 2           | HypeSquad Events       |
+| 1 << 3           | Bug Hunter Level 1     |
+| 1 << 6           | House Bravery          |
+| 1 << 7           | House Brilliance       |
+| 1 << 8           | House Balance          |
+| 1 << 9           | Early Supporter        |
+| 1 << 10          | Team User              |
+| 1 << 12          | System                 |
+| 1 << 14          | Bug Hunter Level 2     |
+| 1 << 16          | Verified Bot           |
+| 1 << 17          | Verified Bot Developer |
 
 ###### Premium Types
 
 Premium types denote the level of premium a user has. Visit the [Nitro](https://discord.com/nitro) page to learn more about the premium plans we currently offer.
 
-| Value | Name          |
-| ----- | ------------- |
-| 0     | None          |
-| 1     | Nitro Classic |
-| 2     | Nitro         |
+| Value (integer) | Name          |
+| --------------- | ------------- |
+| 0               | None          |
+| 1               | Nitro Classic |
+| 2               | Nitro         |
 
 ### Connection Object
 
@@ -91,24 +91,24 @@ The connection object that the user has attached.
 
 ###### Connection Structure
 
-| Field         | Type    | Description                                                                         |
-| ------------- | ------- | ----------------------------------------------------------------------------------- |
-| id            | string  | id of the connection account                                                        |
-| name          | string  | the username of the connection account                                              |
-| type          | string  | the service of the connection (twitch, youtube)                                     |
-| revoked?      | boolean | whether the connection is revoked                                                   |
-| integrations? | array   | an array of partial [server integrations](#DOCS_RESOURCES_GUILD/integration-object) |
-| verified      | boolean | whether the connection is verified                                                  |
-| friend_sync   | boolean | whether friend sync is enabled for this connection                                  |
-| show_activity | boolean | whether activities related to this connection will be shown in presence updates     |
-| visibility    | integer | [visibility](#DOCS_RESOURCES_USER/user-object-visibility-types) of this connection  |
+| Field         | Type                                                                             | Description                                                                         |
+| ------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| id            | string                                                                           | id of the connection account                                                        |
+| name          | string                                                                           | the username of the connection account                                              |
+| type          | string                                                                           | the service of the connection (twitch, youtube)                                     |
+| revoked?      | boolean                                                                          | whether the connection is revoked                                                   |
+| integrations? | array of partial [integration](#DOCS_RESOURCES_GUILD/integration-object) objects | an array of this user's integrations                                                |
+| verified      | boolean                                                                          | whether the connection is verified                                                  |
+| friend_sync   | boolean                                                                          | whether friend sync is enabled for this connection                                  |
+| show_activity | boolean                                                                          | whether activities related to this connection will be shown in presence updates     |
+| visibility    | integer                                                                          | [visibility](#DOCS_RESOURCES_USER/user-object-visibility-types) of this connection  |
 
 ###### Visibility Types
 
-| Value | Name     | Description                                      |
-| ----- | -------- | ------------------------------------------------ |
-| 0     | None     | invisible to everyone except the user themselves |
-| 1     | Everyone | visible to everyone                              |
+| Value (integer) | Name     | Description                                      |
+| --------------- | -------- | ------------------------------------------------ |
+| 0               | None     | invisible to everyone except the user themselves |
+| 1               | Everyone | visible to everyone                              |
 
 ## Get Current User % GET /users/@me
 

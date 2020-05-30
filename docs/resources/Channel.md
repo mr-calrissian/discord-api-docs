@@ -213,23 +213,23 @@ Represents a message sent in a channel within Discord.
 
 ###### Message Types
 
-| Type                                   | Value |
-| -------------------------------------- | ----- |
-| DEFAULT                                | 0     |
-| RECIPIENT_ADD                          | 1     |
-| RECIPIENT_REMOVE                       | 2     |
-| CALL                                   | 3     |
-| CHANNEL_NAME_CHANGE                    | 4     |
-| CHANNEL_ICON_CHANGE                    | 5     |
-| CHANNEL_PINNED_MESSAGE                 | 6     |
-| GUILD_MEMBER_JOIN                      | 7     |
-| USER_PREMIUM_GUILD_SUBSCRIPTION        | 8     |
-| USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1 | 9     |
-| USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2 | 10    |
-| USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3 | 11    |
-| CHANNEL_FOLLOW_ADD                     | 12    |
-| GUILD_DISCOVERY_DISQUALIFIED           | 14    |
-| GUILD_DISCOVERY_REQUALIFIED            | 15    |
+| Value (integer) | Type                                   |
+| --------------- | -------------------------------------- |
+| 0               | DEFAULT                                |
+| 1               | RECIPIENT_ADD                          |
+| 2               | RECIPIENT_REMOVE                       |
+| 3               | CALL                                   |
+| 4               | CHANNEL_NAME_CHANGE                    |
+| 5               | CHANNEL_ICON_CHANGE                    |
+| 6               | CHANNEL_PINNED_MESSAGE                 |
+| 7               | GUILD_MEMBER_JOIN                      |
+| 8               | USER_PREMIUM_GUILD_SUBSCRIPTION        |
+| 9               | USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1 |
+| 10              | USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2 |
+| 11              | USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3 |
+| 12              | CHANNEL_FOLLOW_ADD                     |
+| 14              | GUILD_DISCOVERY_DISQUALIFIED           |
+| 15              | GUILD_DISCOVERY_REQUALIFIED            |
 
 ###### Message Activity Structure
 
@@ -258,22 +258,22 @@ Represents a message sent in a channel within Discord.
 
 ###### Message Activity Types
 
-| Type         | Value |
-| ------------ | ----- |
-| JOIN         | 1     |
-| SPECTATE     | 2     |
-| LISTEN       | 3     |
-| JOIN_REQUEST | 5     |
+| Value (integer) | Type          |
+| --------------- | ------------ |
+| 1               | JOIN         |
+| 2               | SPECTATE     |
+| 3               | LISTEN       |
+| 5               | JOIN_REQUEST |
 
 ###### Message Flags
 
-| Flag                   | Value  | Description                                                                       |
-| ---------------------- | ------ | --------------------------------------------------------------------------------- |
-| CROSSPOSTED            | 1 << 0 | this message has been published to subscribed channels (via Channel Following)    |
-| IS_CROSSPOST           | 1 << 1 | this message originated from a message in another channel (via Channel Following) |
-| SUPPRESS_EMBEDS        | 1 << 2 | do not include any embeds when serializing this message                           |
-| SOURCE_MESSAGE_DELETED | 1 << 3 | the source message for this crosspost has been deleted (via Channel Following)    |
-| URGENT                 | 1 << 4 | this message came from the urgent message system                                  |
+| Value (bitfield) | Flag                   | Description                                                                       |
+| ---------------- | ---------------------- | --------------------------------------------------------------------------------- |
+| 1 << 0           | CROSSPOSTED            | this message has been published to subscribed channels (via Channel Following)    |
+| 1 << 1           | IS_CROSSPOST           | this message originated from a message in another channel (via Channel Following) |
+| 1 << 2           | SUPPRESS_EMBEDS        | do not include any embeds when serializing this message                           |
+| 1 << 3           | SOURCE_MESSAGE_DELETED | the source message for this crosspost has been deleted (via Channel Following)    |
+| 1 << 4           | URGENT                 | this message came from the urgent message system                                  |
 
 ###### Example Message
 
@@ -504,19 +504,19 @@ The allowed mention field allows for more granular control over mentions without
 
 ###### Allowed Mention Types
 
-| Type              | Value      | Description                           |
-| ----------------- | ---------- | ------------------------------------- |
-| Role Mentions     | "roles"    | Controls role mentions                |
-| User Mentions     | "users"    | Controls user mentions                |
-| Everyone Mentions | "everyone" | Controls @everyone and @here mentions |
+| Value (string) | Type              | Description                           |
+| -------------- | ----------------- | ------------------------------------- |
+| roles          | Role Mentions     | Controls role mentions                |
+| users          | User Mentions     | Controls user mentions                |
+| everyone       | Everyone Mentions | Controls @everyone and @here mentions |
 
 ###### Allowed Mentions Structure
 
-| Field | Type                           | Description                                                                                                                           |
-| ----- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| parse | array of allowed mention types | An array of [allowed mention types](#DOCS_RESOURCES_CHANNEL/allowed-mentions-object-allowed-mention-types) to parse from the content. |
-| roles | list of snowflakes             | Array of role_ids to mention (Max size of 100)                                                                                        |
-| users | list of snowflakes             | Array of user_ids to mention (Max size of 100)                                                                                        |
+| Field | Type                                                                                                    | Description                                                  |
+| ----- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| parse | array of [allowed mention types](#DOCS_RESOURCES_CHANNEL/allowed-mentions-object-allowed-mention-types) | An array of allowed mention types to parse from the content. |
+| roles | array of snowflakes                                                                                     | Array of role_ids to mention (Max size of 100)               |
+| users | array of snowflakes                                                                                     | Array of user_ids to mention (Max size of 100)               |
 
 ###### Allowed Mentions Reference
 

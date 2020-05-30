@@ -41,7 +41,7 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 | voice_states? \*              | array of partial [voice state](#DOCS_RESOURCES_VOICE/voice-state-object) objects    | states of members currently in voice channels; lacks the `guild_id` key                                                                   |
 | members? \*                   | array of [guild member](#DOCS_RESOURCES_GUILD/guild-member-object) objects          | users in the guild                                                                                                                        |
 | channels? \*                  | array of [channel](#DOCS_RESOURCES_CHANNEL/channel-object) objects                  | channels in the guild                                                                                                                     |
-| presences? \*                 | array of partial [presence update](#DOCS_TOPICS_GATEWAY/presence-update) objects    | presences of the members in the guild, will only include non-offline members if the size is greater than `large threshold`                |
+| presences? \*                 | array of partial [presence](#DOCS_TOPICS_GATEWAY/presence-update) objects           | presences of the members in the guild, will only include non-offline members if the size is greater than `large threshold`                |
 | max_presences?                | ?integer                                                                            | the maximum number of presences for the guild (the default value, currently 25000, is in effect when `null` is returned)                  |
 | max_members?                  | integer                                                                             | the maximum number of members for the guild                                                                                               |
 | vanity_url_code               | ?string                                                                             | the vanity url code for the guild                                                                                                         |
@@ -100,14 +100,14 @@ Guilds in Discord represent an isolated collection of users and channels, and ar
 
 ###### System Channel Flags
 
-| Flag                           | Value  | Description                         |
-| ------------------------------ | ------ | ----------------------------------- |
-| SUPPRESS_JOIN_NOTIFICATIONS    | 1 << 0 | Suppress member join notifications  |
-| SUPPRESS_PREMIUM_SUBSCRIPTIONS | 1 << 1 | Suppress server boost notifications |
+| Value (bitfield) | Name                           | Description                         |
+| ---------------- | ------------------------------ | ----------------------------------- |
+| 1 << 0           | SUPPRESS_JOIN_NOTIFICATIONS    | Suppress member join notifications  |
+| 1 << 1           | SUPPRESS_PREMIUM_SUBSCRIPTIONS | Suppress server boost notifications |
 
-###### Guild Features
+###### Guild Feature
 
-| Feature                | Description                                                                     |
+| Value (string)         | Description                                                                     |
 | ---------------------- | ------------------------------------------------------------------------------- |
 | INVITE_SPLASH          | guild has access to set an invite splash background                             |
 | VIP_REGIONS            | guild has access to set 384kbps bitrate in voice (previously VIP voice servers) |
@@ -298,12 +298,12 @@ A partial [guild](#DOCS_RESOURCES_GUILD/guild-object) object. Represents an Offl
 | account             | [account](#DOCS_RESOURCES_GUILD/integration-account-object) object                                   | integration account information                                                 |
 | synced_at           | ISO8601 timestamp                                                                                    | when this integration was last synced                                           |
 
-###### Integration Expire Behaviors
+###### Integration Expire Behavior
 
-| Value | Name        |
-| ----- | ----------- |
-| 0     | Remove role |
-| 1     | Kick        |
+| Value (integer) | Name        |
+| --------------- | ----------- |
+| 0               | Remove role |
+| 1               | Kick        |
 
 ### Integration Account Object
 
@@ -824,10 +824,10 @@ The same documentation also applies to `embed.png`.
 
 ###### Widget Style Options
 
-| Value   | Description                                                                                                                                                    | Example                                                                                 |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| shield  | shield style widget with Discord icon and guild members online count                                                                                           | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=shield)  |
-| banner1 | large image with guild icon, name and online count. "POWERED BY DISCORD" as the footer of the widget                                                           | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner1) |
-| banner2 | smaller widget style with guild icon, name and online count. Split on the right with Discord logo                                                              | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner2) |
-| banner3 | large image with guild icon, name and online count. In the footer, Discord logo on the left and "Chat Now" on the right                                        | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner3) |
-| banner4 | large Discord logo at the top of the widget. Guild icon, name and online count in the middle portion of the widget and a "JOIN MY SERVER" button at the bottom | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner4) |
+| Value (string) | Description                                                                                                                                                    | Example                                                                                 |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| shield         | shield style widget with Discord icon and guild members online count                                                                                           | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=shield)  |
+| banner1        | large image with guild icon, name and online count. "POWERED BY DISCORD" as the footer of the widget                                                           | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner1) |
+| banner2        | smaller widget style with guild icon, name and online count. Split on the right with Discord logo                                                              | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner2) |
+| banner3        | large image with guild icon, name and online count. In the footer, Discord logo on the left and "Chat Now" on the right                                        | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner3) |
+| banner4        | large Discord logo at the top of the widget. Guild icon, name and online count in the middle portion of the widget and a "JOIN MY SERVER" button at the bottom | [Example](https://discord.com/api/guilds/81384788765712384/widget.png?style=banner4) |
