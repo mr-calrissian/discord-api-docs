@@ -21,10 +21,10 @@ Used to represent a webhook.
 
 ###### Webhook Types
 
-| Value | Name             | Description                                                                                                    |
-| ----- | ---------------- | -------------------------------------------------------------------------------------------------------------- |
-| 1     | Incoming         | Incoming Webhooks can post messages to channels with a generated token                                         |
-| 2     | Channel Follower | Channel Follower Webhooks are internal webhooks used with Channel Following to post new messages into channels |
+| Value (integer) | Name             | Description                                                                                                    |
+| --------------- | ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| 1               | Incoming         | Incoming Webhooks can post messages to channels with a generated token                                         |
+| 2               | Channel Follower | Channel Follower Webhooks are internal webhooks used with Channel Following to post new messages into channels |
 
 ###### Example Webhook
 
