@@ -389,7 +389,7 @@ See [permissions](#DOCS_TOPICS_PERMISSIONS/permissions) for more information abo
 | Field | Type      | Description                   |
 |-------|-----------|-------------------------------|
 | id    | snowflake | role or user id               |
-| type  | int       | either 0 (role) or 1 (member) |
+| type  | integer   | either 0 (role) or 1 (member) |
 | allow | string    | permission bit set            |
 | deny  | string    | permission bit set            |
 
